@@ -1,29 +1,9 @@
-# free
+# free-router 环境是vue-cli3版本
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
+### 启动
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 传送门
+[实现原理](https://juejin.im/post/5db29882e51d452a18445792#heading-20).
