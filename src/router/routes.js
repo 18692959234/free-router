@@ -108,11 +108,8 @@ const getRoutes = (map) => {
 const createClassify = () => {
   let map = filesKey.reduce((map, cur) => {
     let dislodge = cur.match(/\/(.+?)\.vue$/)[1] // 只匹配纯文件名的字符串
-    let key = dislodge.split('/')[0] // 拿到一级文件的名称
-    if (!map[key]) {
-      map[key] = []
-    }
-    map[key].push(cur)
+    let key = dislodge.split('/')[0]; // 拿到一级文件的名称
+    (map[key] || (map[key] = [])).push(cur)
     return map
   }, {})
   return getRoutes(map)
