@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 let files = require.context('../pages', true, /\.vue$/) // 根据目录结构去搜索文件
 let filesKey = files.keys() // 获取整个目录结构
 console.log(filesKey)
@@ -24,7 +24,7 @@ const getRouteItemPath = (file) => {
  * 注册组建
  * @param {*} componentConfig （即为调用files方法得出的componentConfig）
  */
-const registerComponent = (componentConfig) => Vue.component(componentConfig.default.name || componentConfig.default, componentConfig.default || componentConfig)
+// const registerComponent = (componentConfig) => Vue.component(componentConfig.default.name || componentConfig.default, componentConfig.default || componentConfig)
 
 /**
  * 校验目录下是否有其他文件,注意((?!${name}).)是因为要查询的目录有可能为name/name.vue，而这样可能会导致误判有无children，所以要匹配非name。
@@ -62,7 +62,7 @@ const getRoutes = (map) => {
           if (len === i) {
             if (i === 1) { // 如果为第一层，则必带有children
               route = {
-                component: registerComponent(files(item)),
+                component: files(item).default,
                 path: getRouteItemPath(item),
                 children: []
               }
@@ -71,7 +71,7 @@ const getRoutes = (map) => {
               let name = classArray[len - 1] // 获取每个路径下具体的文件名
               let iteration = classArray.slice(0, len - 1) // 截取文件路径
               let childRoute = {
-                component: registerComponent(files(item)),
+                component: files(item).default,
                 path: getRouteItemPath(name)
               }
               // 从文件的目录下搜索有无子文件，有子文件代表有children属性。 否则无，则直接给route增加name属性
@@ -91,7 +91,7 @@ const getRoutes = (map) => {
     } else { // 没有children，直接遍历插入
       level.forEach(item => {
         route = {
-          component: registerComponent(files(item)),
+          component: files(item).default,
           name: getRouteItemName(item),
           path: getRouteItemPath(item)
         }
